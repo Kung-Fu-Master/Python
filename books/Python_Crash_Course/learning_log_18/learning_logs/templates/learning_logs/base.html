@@ -9,6 +9,8 @@
         &nbsp&nbsp
         <a href="{% url 'users:logout' %}">logout</a>
     {% else %}
+        <a href="{% url 'users:register' %}">register</a>
+        &nbsp &nbsp
         <a href="{% url 'users:login' %}">login</a>
     {% endif %}
 </p>
