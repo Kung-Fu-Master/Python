@@ -1,0 +1,42 @@
+
+windows编写完后可本地部署
+
+python: 3.7.3
+django: 2.2.4 https://www.djangoproject.com/download/
+
+
+一：本地部署(linux)：
+      需要安装的软件
+    1.yum -y install httpd    
+      启动apache服务器        
+    2.systemctl start httpd                              
+    3.python manage.py runserver 0.0.0.0:8000 不启动httpd服务器也可以访问! 
+      //安装apache服务器,启动apache,window打开浏览器输入http://serverIP:8000 即可看到对应默认apache网页
+      //其网页其实是在linux对应的/var/home/html路径，编写好的django项目也要拷贝到这个目录
+      //之后进入django项目, $:python manage.py runserver 0.0.0.0:8000, 再在windows输入地址即可访问项目主页
+      //如果网页出现"ALLOWE HOSTS"错误时，修改django项目中的settings.py中的ALLOWED_HOSTS = ["*"]允许任何网址访问
+      登录后台网址:http://serverIP:8000/admin
+        user:weiwei pwd:123
+
+将项目与apache服务器相关联, python3 与 wsgi不兼容, 部署有问题
+yum -y install httpd-devel
+pip -y install mod_wsgi    //不能用yum安装mod_wsgi否则默认安装的是python2.7与python3不兼容
+
+编写apache配置：
+vim /etc/httpd/conf/httpd.conf
+    1.第一行插入mod组件, 可以对jango进行处理
+        LoadModule wsgi_module modules/mod_wsgi.so
+    2.监听端口
+        Listen 80           //默认监听端口是80
+    3.修改项目路径"DocumentRoot "/var/www/html""
+        DocumentRoot "/var/www/html/django_company_v1.0"
+    4.插入设定访问项目时候跳转路径，wsgi.py与项目部署相关
+        WSGIScriptAlias / "/var/www/html/django_company_v1.0/company/wsgi.py"
+    5.插入
+        Alias /static/ /var/www/html/django_company_v1.0/
+重启apache服务器
+systemctl restart httpd
+
+出现500等错误学会查看错误log
+vim /var/log/httpd/error_log
+
