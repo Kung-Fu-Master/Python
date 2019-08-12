@@ -1,0 +1,14 @@
+需求分析
+首页、走进**、企业咨询、（产品展示）、联系我们
+logo更换、网站名称更换、轮播更换、企业咨询发布、联系我们、（产品添加与展示）
+
+数据库设计：
+表明(字段名)
+logo(img)
+webname(name)
+ppt(title、img、link)
+news（title、content、link）
+contact(qq、phone、addr)
+
+
+
