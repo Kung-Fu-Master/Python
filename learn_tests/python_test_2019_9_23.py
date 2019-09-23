@@ -165,6 +165,46 @@ logging.basicConfig(filename="logging.txt", level=logging.DEBUG, format="%(ascti
 
 ############################################################################################
 
+### super()
+class Employee:            #新式类，所有类都隐式继承object类
+#class Employee(object):   #与上一行代码效果相同,object 作为所有基类的祖先
+    def __init__(self, salary):
+        self.salary = salary
+    def work(self):
+        print("普通员工正在写代码, 工资是:", self.salary)
 
+class Customer(object):    #新式类，所有类都隐式继承object类
+    def __init__(self, favorite, address):
+        self.favorite = favorite
+        self.address = address
+    def info(self):
+        print("我是一个顾客，我的爱好是%s, 地址是%s" %(self.favorite, self.address))
+
+class Manager(Employee, Customer):
+    def __init__(self, salary, favorite, address):
+        super().__init__(salary)
+        #super(Manager, self).__init__(salary) #与上一行代码效果相同
+        Customer.__init__(self, favorite, address)
+        print("--Manager 的构造方法--")
+
+m = Manager(25000, "IT产品", "广州")
+m.work()
+m.info()
+
+    
+###super()
+class Animal(object):
+    def __init__(self, name):
+        self.name = name
+    def greet(self):
+        print("Hello I am %s." % self.name)
+
+class Dog(Animal):
+    def __init__(self, name):
+        super().__init__(name)
+    def greet(self):
+        super().greet()
+dog = Dog("dog")
+dog.greet()
 
 
