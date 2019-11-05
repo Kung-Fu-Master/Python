@@ -31,6 +31,7 @@ plt.plot(x, y, color='b', linestyle=":", marker="o", markerfacecolor="red",marke
 plt.text(1, 0.5, "text") ### add text information at coordinates (1, 0.5)
 plt.text(10, 0.75, "text1")
 plt.grid(True) ###add grid
+#在与坐标xy=(,)偏差为xytext=(,)的位置处添加text信息, 和箭头
 plt.annotate("annotate", xytext=(-5.0, 0.0), xy=(10, 0.75), 
             arrowprops=dict(facecolor="red", shrink=0.01,headlength=20, headwidth=20))
 #plt.show()
@@ -101,6 +102,7 @@ ax.spines["right"].set_visible(False)
 
 plt.tick_params(bottom="off", top="off", left="off", right="off")
 
+#直方图,类似于紧凑的条形图 Histogram, similar to a compact bar chart
 plt.hist(x, alpha=0.5, bins=bins)
 
 plt.grid()
