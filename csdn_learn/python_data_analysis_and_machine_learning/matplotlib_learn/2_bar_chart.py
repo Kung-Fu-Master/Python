@@ -29,6 +29,7 @@ plt.show()
 fig, ax = plt.subplots()
 v_bars = ax.bar(x, y, color="lightblue")
 ax.axhline(0, color="grey", linewidth=2)
+#将可迭代的对象作为参数，将对象中对应的元素打包成一个个元组，然后返回由这些元组组成的对象，这样做的好处是节约了不少的内存。
 for bar, height in zip(v_bars, y):
     if height < 0:
         bar.set(edgecolor = "darkred", color = "green", linewidth=3)
